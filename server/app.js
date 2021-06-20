@@ -1,5 +1,20 @@
+const mongoose=require('mongoose');
 const express=require('express');
 const app=express();
+
+const DB=`mongodb+srv://GARG:Garg@1234@cluster0.an2tr.mongodb.net/TTDB?retryWrites=true&w=majority`;
+mongoose.connect(DB,{
+    useNewUrlParser:true,
+    useCreateIndex:true,
+    useUnifiedTopology:true,
+    useFindAndModify:false
+}).then(()=>{
+    console.log("Connection Successful");
+}).catch((err)=>{
+    console.log("No connection");
+})
+
+
 
 //Syntax -> app.get(path,callback)
 // '/' -> represent home page
