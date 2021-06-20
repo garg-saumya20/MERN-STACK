@@ -4,18 +4,9 @@ const express=require('express');
 const app=express();
 
 dotenv.config({path:'./config.env'});
+const PORT=process.env.PORT;
+require('./db/conn');
 
-const DB=process.env.DATABASE;
-mongoose.connect(DB,{
-    useNewUrlParser:true,
-    useCreateIndex:true,
-    useUnifiedTopology:true,
-    useFindAndModify:false
-}).then(()=>{
-    console.log("Connection Successful");
-}).catch((err)=>{
-    console.log("No connection");
-})
 
 
 
@@ -41,6 +32,6 @@ app.get('/about',middleware,(req,res)=>{
         res.send("hello world from get request on CONTACT page ")
         });
 
-app.listen(3000,()=>{
-    console.log("Server is running at PORT 3000");
+app.listen(PORT,()=>{
+    console.log(`Server is running at PORT ${PORT}`);
 });
