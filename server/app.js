@@ -3,11 +3,19 @@ const app=express();
 
 //Syntax -> app.get(path,callback)
 // '/' -> represent home page
+
+
 app.get('/',(req,res)=>{
 res.send("hello world from get request on HOME page ")
 });
 
-app.get('/about',(req,res)=>{
+//Middleware
+const middleware=(req,res,next)=>{
+console.log("Hello from Middleware");
+next();
+}
+
+app.get('/about',middleware,(req,res)=>{
     res.send("hello world from get request on ABOUT page ")
     });
 
