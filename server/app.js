@@ -6,17 +6,19 @@ const app=express();
 dotenv.config({path:'./config.env'});
 const PORT=process.env.PORT;
 require('./db/conn');
-
+const User= require('./model/userSchema');
+app.use(express.json());
+app.use(require('./router/auth'));
 
 
 
 //Syntax -> app.get(path,callback)
 // '/' -> represent home page
 
-
 app.get('/',(req,res)=>{
-res.send("hello world from get request on HOME page ")
-});
+    res.send("hello world from get request on HOME page ")
+    });
+
 
 //Middleware
 const middleware=(req,res,next)=>{
